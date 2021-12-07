@@ -1,0 +1,2 @@
+# hadoop_single_hdfs_node_dockerized
+hadoop_single_hdfs_node_dockerized
