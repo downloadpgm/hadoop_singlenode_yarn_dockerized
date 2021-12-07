@@ -20,9 +20,9 @@ Creates the following Hadoop files $HADOOP/etc/hadoop directory :
 - hdfs-site.xml
 - hadoop-env.sh
 
-## Running a MapReduce Example
+## Validating HDFS and Loading Files Example
 
-Identify which Docker container started as Hadoop master and run the following docker exec command
+Start the Hadoop container from Docker image running the following
 ```shell
 $ docker container run -d --name hadoop mkenjis/ubhdp_img
 Unable to find image 'mkenjis/ubhdp_img:latest' locally
