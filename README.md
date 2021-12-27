@@ -4,8 +4,6 @@ HDFS is a distributed file system that handles large data sets running on commod
 It is used to scale a single Apache Hadoop cluster to hundreds (and even thousands) of nodes.
 
 ## Steps to Build Hadoop image
-
-To build an image to run this HDFS single node, follow the steps below :
 ```shell
 $ git clone https://github.com/mkenjis/apache_binaries
 $ wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
@@ -41,7 +39,7 @@ Creates the following Hadoop files $HADOOP/etc/hadoop directory :
 
 ## Validating HDFS and Loading Files Example
 
-Start the Hadoop container from Docker image running the following
+Start the Hadoop container from Docker image
 ```shell
 $ docker container run -d --name hadoop mkenjis/ubhdp_img
 Unable to find image 'mkenjis/ubhdp_img:latest' locally
