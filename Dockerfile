@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=US/Central
@@ -25,7 +25,9 @@ RUN echo "" >>.bashrc \
  && echo 'export YARN_HOME=$HADOOP_HOME' >>.bashrc \
  && echo 'export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native' >>.bashrc \
  && echo 'export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin' >>.bashrc
- 
+
+# creates ssh private and public keys, 
+# and creates authorized_keys to enable containers connect to each other via passwordless ssh
 RUN /usr/bin/bash -c "ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa <<<y 2>&1 >/dev/null" \
  && cp .ssh/id_rsa.pub .ssh/authorized_keys
  
