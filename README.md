@@ -3,20 +3,12 @@
 HDFS is a distributed file system that handles large data sets running on commodity hardware. 
 It is used to scale a single Apache Hadoop cluster to hundreds (and even thousands) of nodes.
 
-## Steps to Build Hadoop image
+## Build Hadoop image
 ```shell
 $ git clone https://github.com/mkenjis/apache_binaries
 $ wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
 $ docker image build -t mkenjis/ubhdp_img
-$ docker login
-Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
-Username: mkenjis
-Password: 
-WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
-Configure a credential helper to remove this warning. See
-https://docs.docker.com/engine/reference/commandline/login/#credentials-store
-
-Login Succeeded
+$ docker login   # provide user and password
 $ docker image push mkenjis/ubhdp_img
 ```
 
@@ -37,34 +29,18 @@ Creates the following Hadoop files $HADOOP/etc/hadoop directory :
 - hdfs-site.xml
 - hadoop-env.sh
 
-## Validating HDFS and Loading Files Example
+## Check HDFS and Load Files
 
-Start the Hadoop container from Docker image
+1. start hadoop container from Docker image
 ```shell
 $ docker container run -d --name hadoop mkenjis/ubhdp_img
-Unable to find image 'mkenjis/ubhdp_img:latest' locally
-latest: Pulling from mkenjis/ubhdp_img
-7b1a6ab2e44d: Pull complete 
-27f2d79f1b8f: Pull complete 
-80321c48ace2: Pull complete 
-2baf076bbe66: Pull complete 
-2c2dbd2b3e13: Pull complete 
-8d4d85d2eb30: Pull complete 
-e28982977efb: Pull complete 
-73f8ab362867: Pull complete 
-04fce0ebbc88: Pull complete 
-1a88a32438cf: Pull complete 
-c4745550d4c9: Pull complete 
-Digest: sha256:ebd7b67aa9532585525076d419be6ef777b5e778132cb2fe3b619860bb4b3b6b
-Status: Downloaded newer image for mkenjis/ubhdp_img:latest
-01f9173ab34aa991cbef81daade583600fbce9f5e2d46b7281a6242179720913
 $ docker container ls
 CONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS          PORTS      NAMES
 01f9173ab34a   mkenjis/ubhdp_img   "/usr/bin/supervisord"   32 seconds ago   Up 31 seconds   9000/tcp   hadoop
-$ docker container exec -it <container ID> bash
+$ docker container exec -it <hdp ID> bash
 ```
 
-Inside the Hadoop container, check your HDFS service
+2. access hadoop container and check HDFS service
 ```shell
 $ hdfs dfsadmin -report
 Configured Capacity: 5000003584 (4.66 GB)
@@ -98,7 +74,7 @@ Xceivers: 1
 Last contact: Tue Dec 07 14:10:03 CST 2021
 ```
 
-Create a directory in HDFS filesystem and copy text files in this directory
+3. create HDFS directory and copy files in this directory
 ```shell
 $ hdfs dfs -ls /
 $ hdfs dfs -mkdir /data
