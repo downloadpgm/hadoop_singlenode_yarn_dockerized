@@ -7,7 +7,7 @@ It is used to scale a single Apache Hadoop cluster to hundreds (and even thousan
 ```shell
 $ git clone https://github.com/mkenjis/apache_binaries
 $ wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
-$ docker image build -t mkenjis/ubhdp_img
+$ docker image build -t mkenjis/ubhdp_img .
 $ docker login   # provide user and password
 $ docker image push mkenjis/ubhdp_img
 ```

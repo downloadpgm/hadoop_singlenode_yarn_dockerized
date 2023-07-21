@@ -18,12 +18,12 @@ echo '  </property>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
 
 echo '  <property>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
 echo '    <name>dfs.name.dir</name>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
-echo '    <value>file:///data/hadoop/hdfs/namenode</value>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
+echo '    <value>/hadoop/hdfs/namenode</value>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
 echo '  </property>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
 
 echo '  <property>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
 echo '    <name>dfs.data.dir</name>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
-echo '    <value>file:///data/hadoop/hdfs/datanode</value>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
+echo '    <value>/hadoop/hdfs/datanode</value>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
 echo '  </property>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
 
 echo '</configuration>' >>$HADOOP_HOME/etc/hadoop/hdfs-site.xml
