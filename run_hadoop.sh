@@ -10,15 +10,18 @@ export YARN_HOME=$HADOOP_HOME
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
-create_conf_files.sh
-
 service ssh start
 
 echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 ssh-keyscan ${HOSTNAME} >~/.ssh/known_hosts
-ssh-keyscan localhost >>~/.ssh/known_hosts
-ssh-keyscan 0.0.0.0 >>~/.ssh/known_hosts
 
-$HADOOP_HOME/bin/hdfs namenode -format 
+# create the hadoop conf files
+create_conf_files.sh
+
+# if a new hadoop cluster, build a HDFS
+# if restarted from previous hadoop cluster run, preserve HDFS
+if [ ! -f /hadoop/hdfs/namenode/current/VERSION ]; then
+ $HADOOP_HOME/bin/hdfs namenode -format
+fi
 
 $HADOOP_HOME/sbin/start-dfs.sh 
